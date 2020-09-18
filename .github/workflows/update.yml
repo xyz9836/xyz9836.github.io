@@ -27,7 +27,7 @@ jobs:
         pip3 install --upgrade setuptools
         pip3 install -r requirements.txt
         
-    - name: subimt
+    - name: download_files
       run: |
         python3 update_rules.py
         
