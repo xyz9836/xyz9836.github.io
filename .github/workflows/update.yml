@@ -1,7 +1,7 @@
 name: update_k2p_rule
 on:
-  #push:
-   # branches: [ master ]
+  push:
+    branches: [ master ]
  # pull_request:
  #  branches: [ master ]
   schedule:
