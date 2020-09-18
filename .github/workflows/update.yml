@@ -6,8 +6,8 @@ on:
  #  branches: [ master ]
   schedule:
     - cron: 0 9 * *  1-5
- # watch:
- #   types: [started]
+  watch:
+    types: [started]
 
 jobs:
   build:
@@ -29,11 +29,7 @@ jobs:
         
     - name: subimt
       run: |
-        python3 auto_subimt.py  <<EOF
-        ${{ secrets.LZ_USER }}
-        ${{ secrets.LZ_PASSWORD }}
-        ${{ secrets.SENDKEY }}
-        EOF
+        python3 update_rules.py
         
     - name: commit
       run: |
