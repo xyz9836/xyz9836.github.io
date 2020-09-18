@@ -1,0 +1,48 @@
+name: update_k2p_rule
+on:
+  #push:
+   # branches: [ master ]
+ # pull_request:
+ #  branches: [ master ]
+  schedule:
+    - cron: 0 9 * *  1-5
+ # watch:
+ #   types: [started]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install Python
+      run: |
+        sudo apt update && \
+        sudo apt install python3
+      
+    - name: requirements
+      run: |
+        pip3 install --upgrade pip
+        pip3 install --upgrade setuptools
+        pip3 install -r requirements.txt
+        
+    - name: subimt
+      run: |
+        python3 auto_subimt.py  <<EOF
+        ${{ secrets.LZ_USER }}
+        ${{ secrets.LZ_PASSWORD }}
+        ${{ secrets.SENDKEY }}
+        EOF
+        
+    - name: commit
+      run: |
+        git config --global user.email 123@qq.com
+        git config --global user.name wsw
+        git add .
+        git commit -m "update" -a
+        
+    - name: Push changes
+      uses:  xyz9836/push-action@master
+      with:
+        github_token: ${{ secrets.P_TOKEN }}
