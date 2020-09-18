@@ -36,7 +36,7 @@ jobs:
         git config --global user.email 123@qq.com
         git config --global user.name wsw
         git add .
-        git commit -m "NEW_update" -a
+        git commit -m "update" -a
         
     - name: Push changes
       uses:  xyz9836/push-action@master
