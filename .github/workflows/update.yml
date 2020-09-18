@@ -33,10 +33,15 @@ jobs:
         
     - name: commit
       run: |
-        git config --global user.email 123@qq.com
-        git config --global user.name wsw
+        git config --global user.email 1234@qq.com
+        git config --global user.name xsx
+        git branch newBranch
+        git branch
+        git checkout newBranch
         git add .
-        git commit -m "update" -a
+        git commit -m "NEW_update" -a
+        git checkout master
+        git merge newBranch
         
     - name: Push changes
       uses:  xyz9836/push-action@master
