@@ -19,6 +19,7 @@ def download_file(url_x,file_name):
     else:
         pathx = path + str(file_name)
         open(pathx, 'wb').write(document)
+        print('  {}下载成功'.format(file_name))
 
 
 path='./'
