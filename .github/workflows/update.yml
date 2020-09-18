@@ -5,7 +5,7 @@ on:
  # pull_request:
  #  branches: [ master ]
   schedule:
-    - cron: 0 9 * *  1-5
+    - cron: 0 0 * *  5
   watch:
     types: [started]
 
@@ -36,7 +36,7 @@ jobs:
         git config --global user.email 123@qq.com
         git config --global user.name wsw
         git add .
-        git commit -m "update" -a
+        git commit -m "NEW_update" -a
         
     - name: Push changes
       uses:  xyz9836/push-action@master
