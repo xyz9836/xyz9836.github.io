@@ -22,7 +22,7 @@ def download_file(url_x,file_name):
         print('  {}下载成功'.format(file_name))
 
 
-path='./'
+path=''
 url_x="https://github.com/houzi-/CDN/raw/master/"
 
 download_file(url_x,'koolproxy.txt')
