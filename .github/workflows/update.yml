@@ -49,4 +49,5 @@ jobs:
       uses:  xyz9836/push-action@master
       with:
         github_token: ${{ secrets.P_TOKEN }}
-        branch: '-u origin master'
+        force: True
+
