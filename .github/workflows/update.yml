@@ -35,15 +35,8 @@ jobs:
       run: |
         git config --global user.email 123n@qq.com
         git config --global user.name wswn
-        #git checkout new  #将你的改动提交到新分支上
-        #git branch
-        #git branch -u origin/master master
         git add .
-        git commit -m "update" -a
-        #git status #检查是否成功
-        #git checkout master #切换到主分支
-        #git branch
-        #git merge new       #新分支提交的改动合并到主分支上
+        git commit -m "auto_update" -a
         
     - name: Push changes
       uses:  xyz9836/push-action@master
