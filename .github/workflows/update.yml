@@ -37,7 +37,7 @@ jobs:
         git config --global user.name wswn
         #git checkout new  #将你的改动提交到新分支上
         #git branch
-        git branch -u origin/master master
+        #git branch -u origin/master master
         git add .
         git commit -m "update" -a
         #git status #检查是否成功
@@ -49,5 +49,6 @@ jobs:
       uses:  xyz9836/push-action@master
       with:
         github_token: ${{ secrets.P_TOKEN }}
+        branch: 'master'
         force: True
 
