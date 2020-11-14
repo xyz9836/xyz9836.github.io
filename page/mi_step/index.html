@@ -8,6 +8,7 @@
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/bootstrapValidator.js"></script>
+
 </head>
 <style>
     .function-title {
@@ -96,9 +97,18 @@
         </div>
     </div>
 
-<div class="container">
-    <p><a class="链接" href="../taobao/index.html">淘宝评论生成器</a></p>
-    <p><a class="链接" href="../../index.html">回主页</a></p>
+<div class="form-horizontal">
+    <div class="col-lg-8 col-lg-offset-2">
+        <hr/>
+        <div class="form-group">
+            <div class="col-lg-9 col-lg-offset-3" style="">
+
+                    <li><a class="链接" href="../taobao/index.html">淘宝评论生成器</a></li>
+                    <li><a class="链接" href="../../index.html">回主页</a></li>
+
+            </div>
+        </div>
+</div>
 </div>
 
 <script type="text/javascript">
@@ -147,31 +157,36 @@
         var _user = $("#user").val();
         var _password = $("#password").val();
         var _step = $("#step").val();
-        $.ajax({
-            url: "https://service-b7ps1opy-1253595977.gz.apigw.tencentcs.com/release/mi_sport_change?user=" + _user + "&password=" + _password + "&step=" + _step,
-            //https://service-b7ps1opy-1253595977.gz.apigw.tencentcs.com/release/mi_sport_change?user=" + _user + "&password=" + _password + "&step=" + _step,
-            //https://service-3k7ywq3l-1255596568.sh.apigw.tencentcs.com/release/change_step?user=" + _user + "&password=" + _password + "&step=" + _step,
-            method: "GET",
-            cache: false,
-            beforeSend: function () {
-                appendLine('开始准备修改...');
-            },
-            success: function(res){
-                console.log(res);
-                appendLine("请求成功, 请求结果:" + res);
-            },
-            error: function (res) {
-                appendLine('啊哦, 请求失败了, statusCode=' + res.status + ', text=' + res.statusText);
-            },
-            complete: function (res) {
-                console.log(res);
-                appendLine('请求完成');
-                appendLine('======================================')
-                $("#submit").removeAttr('readonly')
-                resetValue(_user, _password, _step);
-                lastSubmit = new Date().getTime();
-            }
-        });
+            $.ajax({
+                //url: "https://service-b7ps1opy-1253595977.gz.apigw.tencentcs.com/release/mi_sport_change?user=" + _user + "&password=" + _password + "&step=" + _step,
+                //https://service-b7ps1opy-1253595977.gz.apigw.tencentcs.com/release/mi_sport_change?user=" + _user + "&password=" + _password + "&step=" + _step,
+                //https://service-3k7ywq3l-1255596568.sh.apigw.tencentcs.com/release/change_step?user=" + _user + "&password=" + _password + "&step=" + _step,
+                url: "https://www.runoob.com/try/demo_source/demo_test.txt",
+                //Request URL: https://www.runoob.com/try/demo_source/demo_test.txt?_=1605318804522
+                method: "GET",
+                cache: false,
+                beforeSend: function () {
+                    appendLine('开始准备修改...');
+                },
+                success: function (res) {
+                    console.log(res);
+                    appendLine("请求成功, 请求结果:" + res);
+                },
+                error: function (res) {
+                    console.log(res);
+                    appendLine('啊哦, 请求失败了, statusCode=' + res.status + ', text=' + res.statusText + res);
+                },
+                complete: function (res) {
+                    console.log(res);
+                    appendLine('请求完成');
+                    appendLine('======================================');
+                    $("#submit").removeAttr('readonly');
+                    resetValue(_user, _password, _step);
+                    lastSubmit = new Date().getTime();
+                //console.log(ajax.readyState);
+                }
+            });
+        //}
     });
 
     function resetValue(user, password, step) {
