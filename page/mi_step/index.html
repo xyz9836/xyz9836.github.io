@@ -158,11 +158,7 @@
         var _password = $("#password").val();
         var _step = $("#step").val();
             $.ajax({
-                //url: "https://service-b7ps1opy-1253595977.gz.apigw.tencentcs.com/release/mi_sport_change?user=" + _user + "&password=" + _password + "&step=" + _step,
-                //https://service-b7ps1opy-1253595977.gz.apigw.tencentcs.com/release/mi_sport_change?user=" + _user + "&password=" + _password + "&step=" + _step,
-                url: "https://service-3k7ywq3l-1255596568.sh.apigw.tencentcs.com/release/change_step?user=15963995922&password=qwewsw123&step=6000",
-                //url: "https://www.runoob.com/try/demo_source/demo_test.txt",
-                //Request URL: https://www.runoob.com/try/demo_source/demo_test.txt?_=1605318804522
+                url: "https://service-3k7ywq3l-1255596568.sh.apigw.tencentcs.com/release/change_step?user=" + _user + "&password=" + _password + "&step=" + _step,
                 method: "GET",
                 cache: false,
                 beforeSend: function () {
@@ -183,12 +179,16 @@
                     $("#submit").removeAttr('readonly');
                     resetValue(_user, _password, _step);
                     lastSubmit = new Date().getTime();
-                //console.log(ajax.readyState);
+
                 }
             });
         //}
     });
-
+                    //console.log(ajax.readyState);
+                //url: "https://www.runoob.com/try/demo_source/demo_test.txt",
+                //Request URL: https://www.runoob.com/try/demo_source/demo_test.txt?_=1605318804522
+                    //url: "https://service-b7ps1opy-1253595977.gz.apigw.tencentcs.com/release/mi_sport_change?user=" + _user + "&password=" + _password + "&step=" + _step,
+                //https://service-b7ps1opy-1253595977.gz.apigw.tencentcs.com/release/mi_sport_change?user=" + _user + "&password=" + _password + "&step=" + _step,
     function resetValue(user, password, step) {
         $("#user").val(user);
         $("#password").val(password);
@@ -196,7 +196,6 @@
     }
 
     $(document).ready(function() {
-
         $('#defaultForm').bootstrapValidator({
     //        live: 'disabled',
             message: 'This value is not valid',
