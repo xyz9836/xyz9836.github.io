@@ -1,0 +1,140 @@
+/*演播室后台重构*/
+.select0{ width:100px;}
+.select1{ width:130px;}
+.select2{ width:220px;}
+.inputXL{ width:350px;}
+.inputL{ width:215px; color:#666;}
+.inputM{ width:125px; height:16px; padding:2px 0 0 2px; color:#666;}
+.inputS{ width:80px; height:16px; padding:2px 0 0 2px; color:#666;}
+.inputXS{ width:30px; height:16px; padding:2px 0 0 2px; color:#666;}
+.inputXXS{ width:20px; height:16px; padding:2px 0 0 2px; color:#666;}
+.inputTextM{ width:215px; height:100px;}
+.inputTextL{ width:350px; height:200px;}
+.inputTextXL{ width:800px; height:300px;}
+
+.moduleVideo{ margin-top:10px; background:#fff; overflow:hidden;}
+.tableSelect{ height:100%; border:1px solid #9cc7ea; padding:10px 20px; margin-bottom:10px;}
+.tableSelect table tr td{ padding:12px 0;}
+.tableSelect table .title{ font-weight:bold; color:#006599; width:110px;}
+.tableSelect table .dayIcon{width:16px; height:16px; display:inline; margin:0 5px;} 
+.tableSelect a.SG_aBtn{ margin-left:10px;}
+.tableSelect .radio{vertical-align:-2px; _vertical-align:0px;}
+
+.tableLine{ }
+.tableLine table{border-collapse: collapse; margin-left:1px;*margin-left:0;}
+.tableLine table tr td{border:1px solid #d8ebff; color:#000; text-align:center; padding:10px 0px;*padding:10px 2px; line-height:1.5em; font-family:"宋体";word-break:break-all;word-wrap:break-word;}
+.tableLine table tr.title td,
+.tableLine table tr td.title{color:#00659b;background:#edf6ff; font-weight:bold;white-space:nowrap;}
+.tableLine table tr td.link a{ display:inline-block; margin:0 5px; color:#069;text-decoration:underline;}
+.tableLine table tr.even td{ background:#edf6ff; }
+.tableLine table tr td.left,.tableLine table tr.left td{ text-align:left; padding-left:10px; }
+.tableLine table .dayIcon{width:16px; height:16px; display:inline; margin:0 5px;} 
+
+.tableBtn{ margin:0 0 20px 0;}
+.leftBox{ width:500px; height:100%; margin:10px auto; }
+.leftBox tr td{ padding:7px 0;}
+.leftBox tr td .radio{ vertical-align:-2px; _vertical-align:0px;}
+.leftBox .btnbox{ padding-top:20px; text-align:center;}
+
+.tableTitle{ margin:10px; color:#00659b;}
+.tableTitle h3{ font-size:16px; font-weight:bold; border-bottom:1px dotted #0099cc; padding-bottom:10px;}
+.tableTitle h4{ font-size:14px; font-weight:bold; padding-top:10px;}
+.tableRadio{ height:100%; overflow:hidden; margin-left:20px; color:#666;}
+.tableRadio input{ vertical-align:-2px; _vertical-align:0;}
+.tableRadio h3{ font-size:14px; font-weight:bold; color:#333; margin:5px 0 10px 0;}
+.tableRadio ul{ clear:both;}
+.tableRadio ul li{ float:left; margin-left:20px;}
+
+.logManBox{ height:100%; overflow:hidden; padding:5px;}
+.logManBox ul{ float:left; clear:none; margin-right:50px;}
+.logManBox ul .title{ margin:0; font-weight:bold;}
+.logManBox ul li{ float:none; clear:both; padding:5px 0;}
+.logManBox .line{ background:#ccc;}
+
+.messBox{ background:#f6fafd; border:1px solid #d3e3f0; height:100%; overflow:hidden; padding:20px;}
+.messBox ul{ float:left; clear:none; margin-right:50px;}
+.messBox ul .title{ margin:0; font-weight:bold;}
+.messBox ul li{ float:none; clear:both; padding:5px 0;}
+.messBox .line{ background:#ccc;}
+.messTitle{ font-size:14px; font-weight:bold; margin:10px 0; color:#00659b;}
+.messFlash{ width:600px; margin:50px auto;}
+
+a.dialog_close{width:22px;height:20px;position:absolute;top:5px;right:5px;display:block;cursor:pointer;}
+a.dialog_close{background:url(../images/close.gif) no-repeat left top; overflow:hidden;}
+a.dialog_close:hover{background:url(../images/close.gif) no-repeat left -20px;}
+
+.numIndex{ float:left; height:42px; line-height:42px; _margin-top:10px; color:#00659b;}
+.numIndexTxt{ float:left; height:60px; line-height:22px; color:#00659b;}
+.tablePic{ width:888px; text-align:center;}
+
+.submitBtn{  margin:20px; text-align:right;}
+.submitBtn .SG_aBtn{ margin-right:10px;}
+.rightBtn{  margin:10px 0 -10px 0; text-align:right;}
+.rightBtn .SG_aBtn{ margin-right:10px;}
+
+ul.menuBtn{ margin-top:10px;}
+ul.menuBtn li{ margin:10px 0 0 3px;}
+
+.pzTitle{ clear:both; height:100%; overflow:hidden; margin:10px 0 -10px 0;}
+.pzTitle .left{ float:left; padding:5px 0 10px 20px; font-size:14px;}
+.pzTitle .right{ float:right;}
+.pzTitleS{ clear:both; height:100%; overflow:hidden; margin:10px 0 20px 0;}
+.pzTitleS .left{ float:left; padding:5px 0 0 0; font-size:14px;}
+
+/*首页*/
+.mainIndex{ width:913px; margin:36px auto 0 auto;}
+.miLeft{ float:left; margin-right:10px;}
+.miLeftBox{ margin-bottom:10px;}
+.miLeftBox .topbg{ width:413px; height:5px; background:url(../images/bg_indext.gif) no-repeat; overflow:hidden;}
+.miLeftBox .bodybg{ width:371px; border:1px solid #9cc6ea; border-top:none; background:url(../images/bg_indextbg.gif) repeat-x; padding:10px 20px 30px 20px;}
+.miRight{ float:left;}
+.miRight .topbg{ width:480px; height:5px; background:url(../images/bg_indext.gif) no-repeat 0 -10px; overflow:hidden;}
+.miRight .bodybg{ width:438px; border:1px solid #9cc6ea; border-top:none; background:url(../images/bg_indextbg.gif) repeat-x; padding:10px 20px 30px 20px;}
+
+.bodybg .title{ font-size:14px; font-weight:bold; color:#069;}
+.bodybg .dot{ margin:10px 0;}
+.bodybg .clue{ width:371px; font-weight:bold; color:#069; padding:8px 0 13px 0; position:relative;}
+.bodybg .clue a{ position:absolute; right:0;}
+.bodybg ul.note li{ padding:4px 0;}
+.bodybg ul.list h3 { font-size:12px; font-weight:bold; color:#069; padding:10px 0; }
+.bodybg ul.list li ul.listCon { clear:both; padding-left:10px;}
+.bodybg ul.list li ul.listCon li{ width:105px; float:left; padding:5px 0;}
+.bodybg ul.list li ul.listCon li .radio{ vertical-align:-2px; _vertical-align:0;}
+
+.charRoom{ width:980px; margin:0 auto; padding:30px 0 100px 0;}
+.charRoom a.checkbox{width:20px; height:510px; background:url(../images/check.gif) no-repeat; overflow:hidden; float:left; margin-right:20px; cursor:pointer;}
+.charRoom a.checkbox_r{ background:url(../images/check_r.gif) no-repeat;}
+.charLeft{ float:left; background:#fff; width:228px; padding:40px 15px; border:1px solid #d3edff; position:relative; color:#069; line-height:2em;}
+.charRight{ float:left; background:#fff; height:648px; border:1px solid #d3edff; overflow-y:scroll; overflow-x:hidden;}
+.charConNull{ padding:25px;}
+.charCon{ padding:25px;}
+.charCon li{ font-size:14px;}
+.charCon li.current .name,.charCon li.current .content{ color:#6d9f3d;}
+.charCon li .name{ font-weight:bold; margin-bottom:15px; color:#069;}
+.charCon li .content{ color:#008cba; line-height:1.6em;}
+.charCon li .dot{ margin:15px auto;}
+.charLeft .mt10{ margin-top:10px;}
+.charLeft .mt50{ margin-top:30px;}
+.charLeft .dayIcon{width:16px; height:16px; display:inline; margin:0 5px;} 
+.charLeft .radio{ vertical-align:-2px; _vertical-align:0;}
+
+.prizeBox tr td{ padding:7px 0;}
+.prizeBox tr td .radio{ vertical-align:-2px; _vertical-align:0px;}
+.prizeBox .btnbox{ padding-top:20px; text-align:center;}
+.prizeLeft{ float:left; height:100%; margin:10px; }
+.prizeRight{ float:left; height:100%; margin:10px 0 0 20px;}
+.dotL{ float:left; width:1px; height:430px; padding:0; background:url('../images/dot1.gif') repeat-y;}
+
+.tableLine .insideTable{border:none; margin:1px;*margin:0;}
+.tableLine .insideTable tr td{border:none; color:#000; text-align:center; padding:10px 2px; line-height:1.5em;}
+
+.chooseTable{ width:400px; margin:0 auto;}
+.chooseTable tr.title td{ padding:5px 0; color:#00659b;background:#edf6ff; font-weight:bold; text-align:center;}
+.chooseTable tr td .btn{ width:30px; font-family:"宋体";}
+.chooseTable tr td{ padding:5px 0;}
+
+.red { color:red !important; }
+.gray { color:#999999 !important; }
+.black { color:#000000 !important; }
+.blue { color:#054c80 !important; }
+

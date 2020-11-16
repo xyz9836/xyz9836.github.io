@@ -1,0 +1,108 @@
+/* reset */
+body{}
+a { color: #333; text-decoration: none; border: 0; background-color: transparent;outline:none; }
+a:hover{ text-decoration: none; color:#034D88;}
+body,div,p,q,iframe,form,
+ul,li,dl,dt,dd,h1,h2,h3,h4,h5,h6{ margin: 0; padding: 0;}
+img,fieldset{border: none 0;}
+body,td,textarea{ line-height:1.2;}
+body,input,textarea,select,button{margin: 0; font-size: 16px;font-family:"微软雅黑", SimSun, sans-serif;}
+div,p,table,th,td{ font-size:1em; font-family:"微软雅黑"; line-height:inherit;}
+
+ul,dl,li{list-style: none;font-family:"微软雅黑", SimSun, sans-serif;}
+em,i,u,q,s,dl,caption{ font-style: normal; font-weight: normal; text-decoration: none; }
+hr{ clear:both; margin:7px 0; +margin: 0;  border:0 none;font-size: 1px; line-height:1px;color: #ddd; background-color:#ddd; height: 1px;}
+h1,h2,h3,h4,h5,h6{color:#8c8c8c}
+textarea {line-height:1.2;}
+
+* html textarea,*+html textarea {overflow:auto; overflow-x: hidden; }/* 使多行文本框不显示默认的竖向滚动条 */
+* html iframe, * html frame {overflow:auto; }/* 使浮动窗口不显示默认的竖向滚动条 */
+* html input {overflow: hidden; }/* 使按钮文字不溢出 */
+/* end reset */
+
+/*登录页面 begin*/
+
+.login-wrap{color: #333;background-color: #1B5FA0;background-image: url(light.png);background-repeat: no-repeat;background-position: center top;overflow: hidden;}
+.login-main{height: 100%;min-height: 900px;padding-top: 150px;}
+.login-con{width: 820px;height:550px;margin: 0 auto;background-image: url(city-line01.png) ;}
+
+.fz-logo{text-align: center;margin:0 auto 20px;}
+.logo-tit{margin-bottom: 40px;}
+.login-body{float:right;width:450px;height:320px;box-shadow: 0 0 0 10px rgba(0, 0, 0, 0.05);border: 5px solid rgba(0, 0, 0, 0.05);background: #fff;border-radius: 2px;margin-bottom: 60px;}
+
+.login-tab{text-align: left;}
+.login-title{font-size: 18px;color: #333;background: #f5f6fa;border-bottom: 1px solid #e1e2e6;height: 50px;line-height: 50px;padding-left: 15px;padding-top:5px;text-align: left;}
+
+.login-pic{float: left;}
+
+.login-body ul{width: 370px;height: 240px;float: right;padding:0px 40px 0;text-align: center;margin-top:40px;margin-bottom: 50px;}
+.login-body span{display:block;font-size: 16px;color: #333;float: left;width: 60px;letter-spacing: 2px;height: 40px;line-height: 40px;text-align: left;margin-right: 15px;}
+.login-body li{margin-bottom: 30px;height: 40px;}
+.login-txt-input{width: 252px;height: 40px;padding: 0 10px;border: 1px solid #BCBCBC;color: #818181;line-height: 40px;text-align: left;float: left;}
+.login-btn{width: 350px;height: 40px;background:#ea5e00;border-radius: 3px;margin: 10px auto 0;font-size:18px;letter-spacing:10px;color: #fff;border: none;}
+
+.copyright{font-size: 14px;color: #333;clear: both;width: 500px;margin:0 auto;text-align: center;}
+
+/*登录页面 end*/
+
+
+/*考试页面 begin*/
+.exam-wrap{width:100%;height:100%;background: #024CA1;}
+.exam-header{width:100%;height:200px;background:#024CA1;margin: 0 auto 20px;}
+.exam-headerCon{width:1000px;height:119px;margin: 0 auto;}
+.exam-main{width:1000px;min-height:800px;background: #024CA1;margin: 0 auto;}
+
+/*左侧 begin */
+.exam-leftbar-wrap{text-align: left;}
+.exam-leftbar{width: 180px;height: 500px;float: left;position: fixed;margin-top: -98px;}
+
+.exam-time{text-align: center;margin-bottom: 20px;}
+.exam-time i{background:url(/views/site/images/exam-time.png) no-repeat center center;display:block;width: 75px;height: 75px;margin: 0 auto;}
+.exam-time span{display: block;line-height: 30px;color: #fff;}
+
+
+.exam-userinfo{color: #333;background: #fff;margin-bottom: 10px;text-align: center;border-radius: 5px;}
+.exam-userinfo span{font-weight: bold;background: #3796DE;display: block;color: #fff;height:35px;line-height: 35px;border-right: 5px solid #5AA7E3;border-left: 5px solid #5AA7E3;border-radius: 5px;}
+.exam-userinfo i{display: block;margin: 0;line-height: 40px;}
+
+.ques-type{margin-bottom: 5px;}
+.ques-type ul{}
+.ques-type li{float:left;width:65px;height:30px;line-height:30px;display:inline-block;text-align: center;background:#E85045;margin:0 2px;border-radius: 5px;box-shadow: 2px 3px #03366C;font-size: 14px;}
+.ques-type a{color: #fff;display: block;}
+.ques-type a:hover{background:#f3746b;border-radius: 5px;}
+
+.exam-courseList{text-align: left;margin-top: 50px;}
+.exam-courseList span{display:block;height:40px;line-height:40px;font-size: 18px;color: #fff;background: #3399cc;text-align: center;}
+.exam-courseList ul{padding: 0px 0;background: #fff;}
+.exam-courseList li{height:30px;line-height:30px;margin: 1px 0;font-size: 16px;text-align: center;border-bottom: 1px solid #EDEDED;}
+.exam-courseList li:hover{}
+.exam-courseList li.on a{display:block;border-right: 5px solid #5AA7E3;background:#3796DE;color: #fff;border-left: 5px solid #5AA7E3;}
+.exam-courseList li a{display:block;}
+.exam-courseList li a:hover{color: #fff;background:#3796DE;border-right: 5px solid #5AA7E3;border-left: 5px solid #5AA7E3;}
+
+.exam-submit{background: #E85045;text-align: center;color: #fff;height: 50px;width:180px;line-height: 50px;margin-top: 20px;cursor: pointer;border-radius: 5px;box-shadow:0 7px 0 #AF2924, 0 8px 3px rgba(0, 0, 0, 0.3);}
+.exam-submit:active{background:#E8625A;box-shadow:0 5px 0 #AF2924, 0 3px 3px rgba(0, 0, 0, 0.3);top: 650px;position: absolute;color: #AF2924;text-shadow: 0px 1px #FFADA7;}
+/*.exam-submit{background:#1B9AF7;text-align: center;color: #fff;height: 50px;width:200px;line-height: 50px;margin-top: 20px;cursor: pointer;border-radius: 5px;box-shadow:0 7px 0 #AF2924, 0 8px 3px rgba(0, 0, 0, 0.3);}*/
+
+/*左侧 end */
+
+/*右侧 begin */
+.exam-rightmain{width: 806px;height:100%;background:#fff;float: right;padding: 0px 0;margin-bottom: 30px;}
+
+.exam-partTit{font-size: 24px;padding: 15px 30px;border-bottom: 1px dashed #fff;display: block;color: #fff;background: #1a6dcd;}
+.exam-questionBlock{width: 780px;margin: 0px auto;border-bottom:1px solid #e3e3e3;background: #fff;padding: 10px 10px;}
+/*.exam-questionBlock{width: 760px;background:#fff;}*/
+.exam-questionBlock:hover{background: #e8e8e8;}
+.exam-courseName{color: #f44336;margin:5px 0 0px 60px; font-size:16px}
+.exam-questionTitle{padding:10px 10px;line-height: 24px;color: #151515;position: relative; font-size:16px}
+.exam-questionTitle span{font-size: 20px;color: #e45c40;margin-right: 10px;float: left;}
+.exam-questionTitle p{float: right;width: 720px;}
+.exam-questionOption{margin: 0px 0px 10px 60px;clear: both;padding-top: 10px; font-size:16px}
+.exam-questionOption input{display: inline-block;clear: both;margin-bottom: 5px;}
+.exam-questionAnw{margin-left: 60px;margin-bottom: 20px;}
+.exam-questionAnw span{color: #ff0000;font-weight: 600;}
+
+/*考试页面 footer*/
+.exam-footer{margin:0 auto;width:1000px;height: 50px;clear: both;color: #fff;font-size: 14px;text-align: center;border-top: 1px solid #E7E7E7;padding-top: 20px;}
+
+/*考试页面 end*/

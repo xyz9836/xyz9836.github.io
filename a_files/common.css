@@ -1,0 +1,84 @@
+/* 初始化CSS */
+html, body, ul, li, ol, dl, dd, dt, p, h1, h2, h3, h4, h5, h6, form, fieldset, legend,img{margin:0;padding:0;}
+fieldset,img{border:none;}
+address,caption,cite,code,dfn,th,var{font-style:normal;font-weight:normal;}
+ul,ol{list-style:none;}
+select,input{vertical-align:middle;}
+select,input,textarea{font-size:12px;margin:0;}
+table{border-collapse:collapse;}
+body{background:#fff;color:#333;padding:0;font:12px/20px "宋体";}
+
+.clearfix:after{content:".";display:block;height:0;visibility:hidden;clear:both;}
+.clearfix{zoom:1;}
+.clearit{clear:both;height:0;font-size:0;overflow:hidden;}
+
+a{color:#049;text-decoration:none;}
+a:visited{color:#800080;}
+a:hover, a:active, a:focus{color:#f00;text-decoration:underline;}
+
+a.f_grey, a.f_grey:visited{color:#999}
+a.f_grey:hover{color:#f00}
+a.f_999, a.f_999:visited{ color:#999;}
+a.f_666, a.f_666:visited{ color:#666;}
+a.f_777, a.f_777:visited{ color:#000000;}
+a.f_666:hover, a.f_999:hover{color:#c00}
+
+.f-fff, .f-fff:visited, .f-fff:hover{ color:#fff;}
+
+.fred{color:#f00 !important}
+.forange{color:#d84624}
+/*  Add by xuehua  */
+.space { height:10px; overflow:hidden; background:#fff; }
+.f12 { font-size:12px !important}
+.f14 { font-size:14px !important}
+.lh23 { line-height:23px !important }
+.lh24 { line-height:24px !important }
+.lh30 { line-height:30px !important }
+.t999{text-indent:-999em}
+.tar{text-align:right}
+.isLine{ text-decoration:underline}
+.nobg{background:none!important}
+.nobottom{border-bottom:none !important}
+.bold{ font-weight:bold;}
+h1, h2, h3, h4, h5, strong { font-weight:normal; }
+.wrap_top { background:url(http://www.hxacc.com/views/site/images/hxacc_index_03.png) repeat-x 0 6px; padding:15px;}
+.wrap { width:980px; padding:18px 0; margin:0 auto;}
+.wrap960 { width:960px; padding:10px 0; margin:0 auto;}
+.wrap962 { width:962px; padding:10px 0; margin:0 auto;}
+/* Banner */
+.banner{ background:url(http://www.hxacc.com/views/site/images/hxacc_index_01.jpg) repeat-x; height:95px; overflow:hidden; text-align:center}
+.banner_c{width:962px; margin:0 auto; text-align:left; padding:22px 0 0;position:relative; }
+.banner_nav{position:absolute; right:-21px; top:15px; width:430px;_width:450px;}
+.banner_nav li{ background:url(../images/hxacc_index_02.png) no-repeat 0 -300px; width:70px;_padding-right:4px; float:left; display:inline;}
+.banner_nav li a{ display:block; text-align:center; padding-top:50px;}
+.banner_nav li.n1{background-position:9px -2px}
+.banner_nav li.n1.selected{background-position:0 -120px; font-weight:bold}
+.banner_nav li.n2{background-position:-58px -2px}
+.banner_nav li.n2.selected{background-position:-81px -121px; font-weight:bold}
+.banner_nav li.n3{background-position:-124px -2px}
+.banner_nav li.n3.selected{background-position:-161px -121px; font-weight:bold}
+.banner_nav li.n4{background-position:-189px -2px; width:76px}
+.banner_nav li.n4.selected{background-position:-241px -121px; font-weight:bold}
+.banner_nav li.n5{background-position:-268px -2px}
+.banner_nav li.n6{background-position:-337px -2px}
+.banner a, .banner a:visited{ color:#1995ff;}
+.banner a:hover{ color:#f00; font-weight:bold; text-decoration:none}
+/* 导航 */
+.navTop { background:url(http://www.hxacc.com/views/site/images/hxacc_index_01.jpg) repeat-x 0 -104px; height:41px; text-align:center;  }
+.nav{ width:960px; padding-left:2px; margin:0 auto; text-align:left; position:relative}
+.nav li, .nav li a{float:left; line-height:40px; font-size:14px; color:#fff}
+.navTop a, .navTop a:visited { color:#fff; padding:0 20px;}
+.navTop a:hover { color:#fff; text-decoration:none;}
+.nav li.selected a, .nav li.selected a:visited, .nav li.selected a:hover{background:url(http://www.hxacc.com/views/site/images/hxacc_index_01.jpg) no-repeat 0 -150px;width:105px; text-align:center; color:#ff5200;font-weight:bold; }
+.nav .tel{ position:absolute; right:-100px; top:10px; font-size:24px; color:#fff; font-family:Arial; line-height:35px;}
+
+.line_01{background:url(../images/hxacc_1102_line.png) repeat-x; overflow:hidden; height:1px; clear:both;}
+/* 联系我们 */
+.contactus {zoom:1; margin-top:10px;text-align:center;line-height:28px; padding:20px 0 0; color:#999}
+.contactus a, .contactus a:visited{ color:#999;}
+.contactus a:hover{color:#f00}
+/* footer */
+.footer{padding:20px 0 0 0; border-top:solid 3px #fc6900; font-size:12px; text-align:center; color:#999;}
+.footer p{text-align:center; line-height:20px; font-size:12px; margin:0; padding:0;}
+.footer a:link, .footer a:visited{color:#999;}
+.footer a:hover{ color:#f00}

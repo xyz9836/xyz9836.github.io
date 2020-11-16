@@ -1,0 +1,84 @@
+/* 本样式表对主css进行一些调整,这些调整最终将整合至主css中 */
+
+/* 调整布局配置页面中4种布局的间距,原来是三种,原样式在 index.css/80行,82行,84行 */
+.layoutExC {height:190px; width:880px; overflow-x:auto;}
+ul.layoutEx {width:1310px;}
+ul.layoutEx li{ float:left; text-align:center; padding:11px 15px; color:#054c80; }
+ul.layoutEx a:link,ul.layoutEx a:visited
+{ display:block; text-align:center; padding:11px 30px; overflow:hidden; color:#054c80; text-decoration:none; border:1px solid #fff; margin-bottom:5px;}
+ul.layoutEx a:hover{border:1px solid #c0c0c0; background:#f8f8f8;}
+
+/* 调整快速配置页面中4种主题的间距,原来是三种,原样式在 style.css/ 283行 */
+ul.changeCon li{ float:left; text-align:center; padding:10px 8px; color:#054c80;}
+
+/* 增加房间配置页面中的保存,预览,发布按钮样式,原样式表中没有 */
+.btnfixed{ position:absolute; width:85px; left:0px; top:700px;}
+.btnfixed a{margin-top:3px;}
+.btnfixed .btns cite{margin-left:28px; padding-right:28px;}
+.btnfixed .btny cite{margin-left:26px; padding-right:26px;}
+
+/*颜色选取*/
+.color{ position:relative; width:27px; height:26px; overflow:hidden; border:solid 1px #CCC;}
+.colorbg{ position:absolute; width:30px; height:31px; left:0px; top:-3px; cursor:pointer; border:0px; font-size:0px; }
+.colorpicker{position:absolute; z-index:9999; background:#F5FAFD; border:solid 1px #C9E8FB; }
+.colorpickerclose{position:absolute; right:3px; top:3px; width:22px; height:22px; cursor:pointer; background:url(/views/images/close.gif) no-repeat 0 -20px;}
+
+/*颜色选取*/
+.farbtastic * { position: absolute; cursor: crosshair; }
+.farbtastic, .farbtastic .wheel { width: 195px; height: 195px; }
+.farbtastic .color, .farbtastic .overlay { top: 47px; left: 47px; width: 101px; height: 101px;}
+.farbtastic .wheel { background: url('../images/colorpicker_wheel.png') no-repeat; width: 195px; height: 195px;}
+.farbtastic .overlay { background: url('../images/colorpicker_mask.png') no-repeat;}
+.farbtastic .marker { width: 17px; height: 17px; margin: -8px 0 0 -8px; overflow: hidden;  background: url('../images/colorpicker_marker.png') no-repeat;}
+
+/*jQuery UI CSS*/
+.ui-helper-hidden { display: none; }
+.ui-helper-hidden-accessible { position: absolute; left: -99999999px; }
+.ui-helper-reset { margin: 0; padding: 0; border: 0; outline: 0; line-height: 1.3; text-decoration: none; font-size: 100%; list-style: none; }
+.ui-helper-clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+.ui-helper-clearfix { display: inline-block; }
+* html .ui-helper-clearfix { height:1%; }
+.ui-helper-clearfix { display:block; }
+.ui-helper-zfix { width: 100%; height: 100%; top: 0; left: 0; position: absolute; opacity: 0; filter:Alpha(Opacity=0); }
+.ui-state-disabled { cursor: default !important; }
+.ui-icon { display: block; text-indent: -99999px; overflow: hidden; background-repeat: no-repeat; }
+.ui-widget-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+.ui-widget-overlay { background: #aaaaaa/*{bgColorOverlay}*/ url(/views/images/ui-bg_flat_0_aaaaaa_40x100.png)/*{bgImgUrlOverlay}*/ 50%/*{bgOverlayXPos}*/ 50%/*{bgOverlayYPos}*/ repeat-x/*{bgOverlayRepeat}*/; opacity: .3;filter:Alpha(Opacity=30)/*{opacityOverlay}*/; }
+.ui-dialog { position: relative; padding: .2em; width: 300px; }
+.ui-dialog .ui-dialog-titlebar { padding: .5em .3em .3em 1em; position: relative; display:none; }
+.ui-dialog .ui-dialog-title { float: left; margin: .1em 0 .2em; } 
+.ui-dialog .ui-dialog-titlebar-close { position: absolute; right: .3em; top: 50%; width: 19px; margin: -10px 0 0 0; padding: 1px; height: 18px; }
+.ui-dialog .ui-dialog-titlebar-close span { display: block; margin: 1px; }
+.ui-dialog .ui-dialog-titlebar-close:hover, .ui-dialog .ui-dialog-titlebar-close:focus { padding: 0; }
+.ui-dialog .ui-dialog-content { border: 0; padding: .5em 1em; background: none; overflow: auto; zoom: 1; }
+.ui-dialog .ui-dialog-buttonpane { text-align: left; border-width: 1px 0 0 0; background-image: none; margin: .5em 0 0 0; padding: .3em 1em .5em .4em; }
+.ui-dialog .ui-dialog-buttonpane button { float: right; margin: .5em .4em .5em 0; cursor: pointer; padding: .2em .6em .3em .6em; line-height: 1.4em; width:auto; overflow:visible; }
+.ui-dialog .ui-resizable-se { width: 14px; height: 14px; right: 3px; bottom: 3px; }
+.ui-draggable .ui-dialog-titlebar { cursor: move; }
+
+.pc_l3 .input_pcl{ width:210px; height:26px; margin:0 10px 10px 70px;}
+
+/*.dot{ height:1px; padding:5px; _padding:0px; border-bottom:1px dotted #9cc6ea;} */
+.bw5{ width:59px; height:58px; line-height:58px;  padding:0px; overflow:hidden;}
+.btn_dis{display:none;}
+
+.menubg{ position:relative;}
+
+
+/* 数据权限管理页面在ie6下 样式有问题 */
+.logManBox ul{ _margin-right:23px;}
+
+/*首页公告过长字符截取*/
+.bodybg ul.note li{ word-wrap: break-word; word-break: break-all; }
+
+/*手动配置模块容器加入溢出限制功能*/
+.bw1,.bw2,.bw3,.bw4,.bw5,.bw6,.bw7,.bw3_l,.bw3_r{ overflow:hidden;}
+
+/* 重新定义房间选择下拉框的样式 */
+.select_room{ width:350px;font-family:'宋体';}
+
+/*解决上传按钮样式在IE8下因inline-block引起的间隙问题*/
+.aBtnSm {vertical-align: middle;}
+
+/*超链接移上样式*/
+a.SG_aBtn:hover{ text-decoration:none;}

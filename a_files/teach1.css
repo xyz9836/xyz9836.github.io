@@ -1,0 +1,228 @@
+/*base*/
+body,html {font-size:12px;font-family:Tahoma;_font-family:"宋体";margin:0;padding:0;text-align:left;color:#000000;/*  改 begin  */background: #1a6dcd;padding: 2em 0;/*  改  end */}
+a:link,a:visited {text-decoration:none;color:#266392;}
+a:hover {text-decoration:underline;color:#266392;}
+img {border:0;padding:0;margin:0;vertical-align:middle;}
+p {text-align:left;}
+table {border-collapse:collapse;}
+input,textarea,select {vertical-align:middle;}
+hr {margin:0 auto;border-top:1px dotted #D9D9D9;width:98%;height:1px;}
+form {margin:0;padding:0;}
+ul,li {margin:0;padding:0;list-style:none;}
+
+/*common elements*/
+.float_bottom {clear:both;height:0px;font-size:0px;padding:0;margin:0;border:0;line-height:0px;overflow:hidden;}
+.mask {width:100%;height:100%;position:absolute;top:0px;left:0px;background:#666666;filter:alpha(opacity=60);opacity:0.6;z-index:999;display:none;}
+
+/*page*/
+.container {width:1200px;;margin:0 auto;padding:0;clear:both;}
+
+
+/*  改 begin */
+
+/*header*/
+/*.header {width:auto;height:68px;margin:0;background:url(/views/css/site/images/hxacc_video_1.png) repeat-x;overflow:hidden;position:relative;}
+.logo {display:block;width:237px;height:58px;background:url(/views/css/site/images/hxacc_video_logo.png) no-repeat;position:absolute;top:4px;left:17px;}
+.head_title {height:30px;line-height:30px;font-size:20px; font-family:微软雅黑;color:#FFFFFF;position:absolute;top:18px;left:300px}
+.head_handel {width:439px;height:23px;position:absolute;top:32px;right:0px;}
+.head_nav {width:360px;height:20px;position:absolute;top:11px;right:10px;}
+.head_nav a:link,.head_nav a:visited {color:#FFFFFF;}
+.head_nav a:hover {color:#FFFFFF;}
+.head_nav em {margin:0 15px;font-style:normal;font-weight:normal;color:#FFFFFF;}*/
+
+
+
+
+.header{
+	/*background: url(/views/images/hed-bg.jpg) no-repeat;*/
+	background-size: cover;
+	height: 50px;
+	padding: 1em 2em;
+	margin-bottom: 2em;
+	/*box-shadow: -5px 4px 50px -21px #000;*/
+}
+.logo{
+	float: left;
+	height: 50px;
+}
+.logo span{
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
+}
+.logo img{
+	vertical-align: middle;
+}
+.head_title{
+	width: 300px;
+	float: left;
+	font-size: 16px;;
+	font-weight: 700;
+	color: #000;
+	line-height: 50px;
+	text-align: center;
+	margin-left: 50px;
+}
+.head_title span{color: #f65801;}
+.head_btn{
+	float: left;
+	line-height: 50px;
+	height:50px;
+
+}
+.head_btn1{
+	float: right;
+	line-height: 50px;
+	height:50px;
+
+}
+.test_btn{
+	font-size: 14px;
+	font-weight: bold;
+	color: #fff;
+	background:  #00BBD3;
+	margin-top:5px;
+	width:100px;
+	height:40px;
+	border-radius: 5px;
+	border:none;
+	cursor: pointer;
+}
+
+/*  改 end */
+
+.fontsize,
+.fontsize_s,
+.fontsize_m,
+.fontsize_l,
+.show_answer,
+.teaching,
+.print {background:url(/views/css/site/images/hxacc_video_2.png) no-repeat;}
+
+.fontsize {width:100px;height:23px;float:left;margin-right:3px;cursor:pointer;background-position:0 -69px;}
+.fontsize_s {width:28px;height:28px;float:left;margin-right:3px;cursor:pointer;background-position:-56px -116px;}
+.fontsize_m {width:28px;height:28px;float:left;margin-right:3px;cursor:pointer;background-position:-28px -116px;}
+.fontsize_l {width:28px;height:28px;float:left;margin-right:5px;cursor:pointer;background-position:0 -116px;}
+.show_answer {width:113px;height:28px;float:left;margin-right:5px;cursor:pointer;background-position:0 -56px;}
+.teaching {width:103px;height:28px;float:left;margin-right:5px;cursor:pointer;background-position:0 -28px;}
+.print {width:103px;height:28px;float:left;margin-right:0px;cursor:pointer;background-position:0 0;}
+
+/*main page*/
+.page {width:auto;clear:both;overflow:hidden; background:url(/views/css/site/images/hxacc_video_1.png) repeat-x 0 -68px;}
+
+.side {width:350px;height:100%;float:left;overflow-x:hidden;}
+.video {width:338px;height:350px;border:1px solid #C5C5C5; background:#f3f3f3;margin:5px 0 0 5px;position:relative;}
+.video_screen {width:330px;height:260px;background:#333333;margin:3px 0 0 3px;clear:both;}
+.video_handel {width:330px;height:80px;margin:3px 0 0 3px;clear:both;}
+.video_handel_box {width:330px;height:80px;position:relative;}
+
+.pbtn_play,
+.pbtn_pause,
+.pbtn_stop,
+.pbtn_prev,
+.pbtn_next,
+.pbtn_vol,
+.pbtn_08,
+.pbtn_10,
+.pbtn_12,
+.pbtn_14,
+.pbtn_16,
+.pbtn_18,
+.pbtn_20,
+.pbtn_switch,
+.pbtn_go {background:url(/views/css/site/images/hxacc_video_2.png) no-repeat;}
+
+.pbtn_play {width:28px;height:27px;cursor:pointer;background-position:0 -145px;position:absolute;left:1px;top:25px;}
+.pbtn_pause {width:28px;height:27px;cursor:pointer;background-position:-29px -145px;position:absolute;left:30px;top:25px;}
+.pbtn_stop {width:28px;height:27px;cursor:pointer;background-position:-58px -145px;position:absolute;left:59px;top:25px;}
+.pbtn_prev {width:28px;height:27px;cursor:pointer;background-position:0 -257px;position:absolute;left:88px;top:25px;}
+.pbtn_next {width:28px;height:27px;cursor:pointer;background-position:-29px -257px;position:absolute;left:117px;top:25px;}
+.pbtn_vol {width:28px;height:27px;cursor:pointer;background-position:-58px -229px;position:absolute;left:160px;top:25px;}
+.pbtn_08 {width:28px;height:27px;cursor:pointer;background-position:0 -173px;position:absolute;left:1px;top:54px;}
+.pbtn_10 {width:28px;height:27px;cursor:pointer;background-position:-29px -173px;position:absolute;left:30px;top:54px;}
+.pbtn_12 {width:28px;height:27px;cursor:pointer;background-position:-58px -173px;position:absolute;left:59px;top:54px;}
+.pbtn_14 {width:28px;height:27px;cursor:pointer;background-position:0 -201px;position:absolute;left:88px;top:54px;}
+.pbtn_16 {width:28px;height:27px;cursor:pointer;background-position:-29px -201px;position:absolute;left:117px;top:54px;}
+.pbtn_18 {width:28px;height:27px;cursor:pointer;background-position:-58px -201px;position:absolute;left:146px;top:54px;}
+.pbtn_20 {width:28px;height:27px;cursor:pointer;background-position:0 -229px;position:absolute;left:175px;top:54px;}
+.pbtn_switch {width:28px;height:27px;cursor:pointer;background-position:-58px -257px;position:absolute;right:1px;top:54px;}
+.pbtn_go {width:26px;height:26px;cursor:pointer;background-position:-26px -197px;position:absolute;right:1px;top:54px;display:none}
+
+.pbtn_time {width:120px;height:14px;position:absolute;right:1px;top:15px;text-align:right;}
+.pbtn_timebar {width:328px;height:16px;position:absolute;left:1px;top:2px;}
+#t_axle {background:url(/views/css/site/images/hxacc_video_2.png) no-repeat 0 -350px;width:331px;height:13px;overflow:hidden;}
+#t_drager {background:url(/views/css/site/images/hxacc_video_2.png) no-repeat 0 -400px;position:absolute;width:20px;height:10px;overflow:hidden;cursor:pointer;margin-top:2px;}
+.pbtn_volbar {width:135px;height:16px;position:absolute;right:3px;top:36px;}
+#v_axle {background:url(/views/css/site/images/hxacc_video_2.png) no-repeat 0 -300px;width:135px;height:10px;overflow:hidden;}
+#v_drager {background:url(/views/css/site/images/hxacc_video_2.png) no-repeat -150px -295px;position:absolute;width:19px;height:19px;overflow:hidden;cursor:pointer;margin-top:-5px;}
+.pbtn_speed {height:26px;}
+.pbtn_speed_text {width:80px;height:16px;position:absolute;right:1px;top:59px;}
+
+.exinfo {width:340px;height:220px;margin:10px 0 0 5px;}
+.exinfo_nav {height:30px;overflow:hidden; position:relative}
+.exinfo_nav em{ position:absolute; z-index:10; width:4px; height:4px; display:block; background:url(/views/css/site/images/hxacc_video_2.png) no-repeat -200px -300px; top:0; left:0}
+.exinfo_nav em.tr{ background-position:-204px -300px; top:0; left:336px}
+.exinfo_nav ul {margin:0;padding:0; overflow:hidden;zoom:1; border:solid 1px #c5c5c5; border-bottom:none;}
+.exinfo_nav ul li {width:112px;height:28px;float:left;background:url(/views/css/site/images/hxacc_video_4.png) repeat-x;border-right:1px solid #C5C5C5;border-bottom:1px solid #C5C5C5;}
+.exinfo_nav ul li a:link,.exinfo_nav ul li a:visited {display:block;width:112px;height:29px;line-height:29px;text-align:center;color:#000000;font-weight:bold;}
+.exinfo_nav ul li a:hover {text-decoration:none;}
+.exinfo_nav ul li.last {border-right:none;}
+.exinfo_nav ul li.curr {border-bottom:1px solid #FFFFFF;background:none;}
+.exinfo_con {padding:4px 9px; border:solid 1px #c5c5c5; border-top:none}
+.exinfo_box {height:175px;overflow-y:scroll;}
+.exinfo_list {clear:both;}
+.exinfo_list li {line-height:25px;clear:both;}
+.exinfo_list li a {float:left;}
+.exinfo_list li span {float:right;}
+.note_book {margin:5px auto;width:295px;}
+.note_book_text {width:292px;height:115px;border:1px solid #666666;}
+.note_book_handel {margin:8px 0 0 0;text-align:right;width:295px;}
+.def_btn {background:url("/views/css/site/images/sprite.gif") repeat-x -425px -375px;border:0;width:45px;height:22px;line-height:22px;color:#000000;font-size:12px;font-weight:bold;}
+#exinfo_1,#exinfo_2,#exinfo_3 {display:none;}
+
+.main {width:auto;height:100%;float:right;}
+.vertical_bar {width:18px;height:100%;margin:0;background:url(/views/css/site/images/hxacc_video_3.png) repeat-y;float:left;}
+.lecture_box {width:auto;height:100%;float:right;overflow-y:scroll;}
+.lecture {clear:both;padding:10px 10px;}
+
+.lecture h1 {font-size:26px;font-weight:bold;text-align:center;padding:10px 0;margin:10px 0;}
+.lecture h2 {font-size:22px;font-weight:bold;text-align:center;padding:3px 0;margin:18px 0 10px 0;}
+.lecture h3 {font-size:18px;font-weight:bold;padding:3px 0;margin:18px 0 0 0;}
+.lecture h4 {font-size:16px;font-weight:bold;margin:18px 0 10px 0;}
+.lecture h5 {font-size:14px;font-weight:bold;margin:18px 0 10px 0;}
+.lecture h6 {font-size:14px;color:#003399;margin:5px 0;}
+.lecture p {margin:0;padding:3px 0;font-size:14px;line-height:1.6em;font-family:"宋体";}
+.lecture .question {margin:15px 5px;padding:8px;border:1px dashed #C6980D;background:#FFFCDD;}
+.lecture .answer {margin:10px 0 5px 0;padding:3px 0;color:#006633;border-top:1px solid #C6980D;}
+.paragraph {padding:0 5px;margin:5px;}
+.p_ing {border:2px dashed #FF6600;background:#F2F2F2;}
+.p_over {border:2px dashed #339900;}
+.ping {font-size:18px;font-weight:bold;color:red}
+
+/*footer*/
+.footer {width:auto;margin:0;padding:0;background:url(/views/css/site/images/hxacc_video_5.png) repeat-x 0 -99px;color:#9E9E9E;text-align:center;height:31px;position:relative}
+.footer p {background:url(/views/css/site/images/hxacc_video_5.png) no-repeat; width:190px; height:56px; line-height:400px; overflow:hidden; right:63px; top:-25px; position:absolute;margin:0;padding:0;text-align:center;clear:both;}
+
+.lecture_question {margin:0;padding:3px 0;font-size:14px;line-height:1.6em;}
+.lecture_answer {margin:0;padding:3px 0;font-size:14px;line-height:1.6em;color:#006633}
+
+/* 弹出窗口 */
+.t_window { position:absolute; background:#fff url(/views/css/site/images/hxacc_1102_07.png) no-repeat 0 100%; width:427px; }
+.t_window .head { background:url(/views/css/site/images/hxacc_1102_07.png) no-repeat; height:42px; overflow:hidden; padding-right:10px; zoom:1 }
+.t_window .head h2 { line-height:42px; color:#fff; font-size:16px; font-family:"微软雅黑", "黑体"; width:105px; text-align:center; float:left }
+.t_window .head h2.t02 { width:136px;}
+.t_window .head h2.t03 {width:92px;}
+.t_window .head .more { float:right; padding:6px; }
+.t_window .t_c { padding:10px; }
+.t_window .t_info { text-align:center; padding:30px 0; color:#666}
+.t_window .tal { text-align:left; padding:10px 0 0 30px;}
+.t_window .t_btn { text-align:center; padding:10px 0 50px; }
+.t_window .p10 {padding:10px 0; }
+.t_window .inp_btn_01 { background:url(/views/css/site/images/hxacc_1102_title.png) no-repeat -120px -200px; width:97px; height:42px; cursor:pointer; border:none }
+.t_window .inp_btn_02 { background:url(/views/css/site/images/hxacc_1102_title.png) no-repeat -450px -200px; width:97px; height:42px; cursor:pointer; border:none }
+.t_window .inp_btn_03 { background:url(/views/css/site/images/hxacc_1102_title.png) no-repeat -340px -200px; width:97px; height:42px; cursor:pointer; border:none }
+.t_window .inp_btn_04 { background:url(/views/css/site/images/hxacc_1102_title.png) no-repeat -230px -200px; width:97px; height:42px; cursor:pointer; border:none }
+
+.win02{ background:#ccc url(/views/css/site/images/hxacc_1102_19.png) no-repeat 0 100%;}
+.win02 .head{ background:url(/views/css/site/images/hxacc_1102_20.png) no-repeat;}
+.win02 .head02{ background:url(/views/css/site/images/hxacc_1102_20.png) no-repeat -500px 0;}

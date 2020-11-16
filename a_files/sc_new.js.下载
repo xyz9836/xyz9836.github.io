@@ -1,0 +1,1058 @@
+SC = {frame:{},admin:{},room:{}};
+  
+//对象名:SC.nav
+//功能:显示页面头部导航
+//参数:tags:头部导航各链接的显示文字,url等(json格式)
+SC.frame.nav = function(tags){
+	return new SC.frame.nav.obj(tags);
+};
+SC.frame.nav.obj = function(tags){
+	var nav = $("#nav_tags"),
+		tag = null,
+		arrTags = [],
+		obj = this;
+	this.current = 0;
+	if(typeof(tags)=="undefined") return;
+	this.length = tags.length;
+	for (var i = 0; i < tags.length; i++){
+		tag = tags[i];
+		if (tag.current){
+			this.current = i;
+		}
+		arrTags.push("<li id=\"nav_");
+		arrTags.push(i);
+		//arrTags.push("\"><span><a href=\"javascript:void(0);\">");
+		arrTags.push(tag.title);
+		arrTags.push("</a></span><span class=\"tagR\"></span>");
+		arrTags.push("<ul id=\"nav_list_");
+		arrTags.push(i);
+		arrTags.push("\" class=\"navList\" style=\"display:none;\">");
+		for (var j = 0; j < tag.child.length; j++){
+			if (tag.child[j].target){
+				arrTags.push("<li><a target=\"_blank\" href=\"");
+			}else{
+				arrTags.push("<li><a href=\"");
+			}
+			
+			arrTags.push(tag.child[j].url);
+			arrTags.push("\">");
+			arrTags.push(tag.child[j].title);
+			arrTags.push("</a></li>");
+		}
+		arrTags.push("</ul>");
+		if ($.browser.msie && $.browser.version == "6.0"){
+			arrTags.push("<iframe id=\"nav_list_iframe_");
+			arrTags.push(i);
+			arrTags.push("\" scrolling=\"no\" style=\"display:none;width:140px;height:");
+			arrTags.push(29*j+4);
+			arrTags.push("px;position:absolute;left:-1px;top:29px;z-index:-1;border:0px;\"></iframe>");
+		}
+		arrTags.push("</li>");
+	}
+	nav.html(arrTags.join(""));
+	$("#nav_" + this.current).addClass("current");
+	for (var i = 0; i < this.length; i++){
+		$("#nav_" + i).mouseenter((function(index){
+			return function(){
+				obj.show(index);
+			};
+		})(i));
+		$("#nav_" + i +  ",#nav_list_" + i).mouseleave((function(index){
+			return function(){
+				obj.hide(index);
+			};
+		})(i));
+	}
+};
+SC.frame.nav.obj.prototype = {
+	toggle: function(n){
+		var tag = $("#nav_list_" + n);
+		if (tag.is(":visible")){
+			this.show(n);
+		}else{
+			this.hide(n);
+		}
+	},
+	hide: function(n){
+		var tag = $("#nav_list_" + n);
+		if (n != this.current){
+			$("#nav_" + n).removeClass("current");
+		}
+		tag.hide();
+		$("#nav_list_iframe_" + n).hide();
+	},
+	show: function(n){
+		var tag = $("#nav_list_" + n);
+		for (var i = 0; i < this.length; i++){
+			if (i != n && i != this.current){
+				$("#nav_" + i).removeClass("current");
+			}
+			$("#nav_list_" + i).hide();
+			$("#nav_list_iframe_" + i).hide();
+		}
+		$("#nav_" + n).addClass("current");
+		tag.show();
+		$("#nav_list_iframe_" + n).show();
+	}
+};
+
+//对象名:SC.menu
+//功能:显示页面左侧导航
+//参数:tags:导航各链接的显示文字,url等(json格式)
+SC.frame.menu = function(tags){
+	var menu = $("#menu_tags"),
+		tag = null,
+		arrTags = [];
+	for (var i = 0; i < tags.length; i++){
+		tag = tags[i];
+		arrTags.push("<li");
+		if (tag.current){
+			arrTags.push(" class=\"current\"");
+		}
+		if (tag.target){
+			arrTags.push("><a target=\"_blank\" href=\"");
+		}else{
+			arrTags.push("><a href=\"");
+		}
+		arrTags.push(tag.url);
+		arrTags.push("\">");
+		arrTags.push(tag.title);
+		arrTags.push("</a></li>");
+	}
+	menu.html(arrTags.join(""));
+};
+
+//对象:SC.linkage
+//功能:select二级联动
+//参数:
+//	(array)select:加入数据的select元素ID
+//	(json)datas:数据
+SC.linkage = function(selects,datas){
+	if(datas.length == 0){
+		return false;
+	}
+	SC.select.addOptions(selects[0], datas);
+	var objSelect = $("#" + selects[0]);
+	SC.select.addOptions(selects[1], datas[SC.select.getSelected(selects[0])["index"]].child);
+	$("#" + selects[0]).change(function(){
+		SC.select.addOptions(selects[1], datas[SC.select.getSelected(selects[0])["index"]].child);
+		$("#" + selects[1]).change();
+	});
+};
+
+//对象:SC.select
+//功能:对select列表的相关操作
+SC.select = {
+	//功能:向指定select中加入option
+	//参数:(array)datas:
+	addOptions: function(selectId, datas){
+		var arrHTML = [];
+		for (var i = 0; i < datas.length; i++){
+			arrHTML.push("<option value=\"");
+			arrHTML.push(datas[i].value);
+			arrHTML.push("\"");
+			if (datas[i].selected){
+				arrHTML.push(" selected=\"selected\"");
+			}
+			arrHTML.push(">");
+			arrHTML.push(datas[i].text);
+			arrHTML.push("</option>");
+		}
+		$("#" + selectId).html(arrHTML.join(""));
+	},
+	//功能:获取指定select选中项的信息
+	//参数:(string)datas:
+	getSelected: function(selectedId){
+		var el = document.getElementById(selectedId);
+		for (var i = 0; i < el.options.length; i++){
+			if (el.options[i].selected){
+				return {index:i};
+			}
+		}
+	}
+};
+
+//对象:SC.inputTip
+//功能:显示输入框下拉选择框
+SC.inputTip = function(options){
+	this.id = options["id"] || "input_select";
+	this.inputElId = options["input"] || null;
+	this.focusElId = options["focus"] || null;
+	this.asso = options["asso"] || false;
+	this.title = options["title"] || "请选择";
+	this.select = options["select"] || [];
+	this.inputEl = $("#" + this.inputElId);
+	this.selectTip = null;
+	this.iframe = null;
+	this.optionList = [];
+	this.activatedOption = [];
+	$("<ul id=\"" + this.id + "_tip\"></ul>").appendTo("body");
+	this.selectTip = $("#" + this.id + "_tip");
+	this.selectTip.css({
+		"background":"none repeat scroll 0 0 #FFFFFF",
+		"border":"1px solid #CCCCCC",
+		"display":"none",
+		"margin":0,
+		"overflow":"hidden",
+		"padding":0,
+		"position":"absolute",
+		"text-align":"left",
+		"width":"auto",
+		"z-index":"999",
+		"left": this.inputEl.offset().left,
+		"top": this.inputEl.offset().top + this.inputEl.outerHeight(),
+		"width": this.inputEl.outerWidth()
+	});
+	if($.browser.msie && $.browser.version == "6.0"){
+		$("<iframe id=\"" + this.id + "_tip_iframe\" frameborder=\"0\"></iframe>").appendTo("body");
+		this.iframe = $("#" + this.id + "_tip_iframe");
+		this.iframe.css({
+			"display": "none",
+			"position": "absolute",
+			"z-index":"998",
+			"opacity": 1
+		});
+	}
+	var obj = this;
+	this.inputEl.bind("keyup", function(event){
+		switch (event.keyCode){
+			case 13:
+				if (obj.activatedOption[0]) {
+					obj.inputEl.val(obj.activatedOption[0].attr("title"));
+				}
+				obj.hide();
+				if (obj.focusElId) $("#" + obj.focusElId).focus();
+				break;
+			case 38:
+				obj.activatedOption[0].css("backgroundColor", "#FFF");
+				if (obj.activatedOption[0] && obj.activatedOption[1] === 0){
+					obj.activatedOption = [obj.optionList[obj.optionList.length-1], obj.optionList.length-1];
+				} else {
+					obj.activatedOption = [obj.optionList[obj.activatedOption[1]-1], obj.activatedOption[1]-1];
+				}
+				obj.activatedOption[0].css("backgroundColor", "#E8F4FC");
+				break;
+			case 40:
+				obj.activatedOption[0].css("backgroundColor", "#FFF");
+				if (obj.activatedOption[0] && obj.activatedOption[1] == obj.optionList.length-1){
+					obj.activatedOption = [obj.optionList[0], 0];
+				} else {
+					obj.activatedOption = [obj.optionList[obj.activatedOption[1]+1], obj.activatedOption[1]+1];
+				}
+				obj.activatedOption[0].css("backgroundColor", "#E8F4FC");
+				break;
+			default:
+				obj.show();
+				break;
+		}
+	});
+	this.inputEl.bind("blur", function(event){
+		obj.hide();
+	});
+	$(window).resize(function(){
+		obj.resetPos();
+	});
+
+};
+SC.inputTip.prototype = {
+	show: function(){
+		var str = this.inputEl.val(),
+			selectMenu = ["<li style='cursor:default;'>", this.title, "</li>"],
+			selectList = [],
+			obj = this,
+			id = this.id;
+		selectMenu.push("<li id=\"" + id + "_tip_text" + "\" style=\"height:18px;line-height:20px;cursor:default;overflow:hidden;\" title=\"" + str + "\">" + str + "</li>");
+		selectList = [""].concat(this.select);
+
+		if (this.asso){
+			if (/@/.test(str)){
+				var name = /[^@]*/.exec(str);
+				name = name ? name[0]:"";
+				for (var i=1; i<selectList.length; i++){
+					var newStr = name + selectList[i];
+					if (newStr.indexOf(str) === 0){
+						selectMenu.push("<li id=\"" + id + "_tip_" + selectList[i] + "\" style=\"height:18px;line-height:20px;cursor:default;overflow:hidden;\" title=\"" + newStr + "\">" + newStr + "</li>");
+					}
+				}
+			} else {
+				for (var i=1; i<selectList.length; i++){
+					var newStr = str + selectList[i];
+					selectMenu.push("<li id=\"" + id + "_tip_" + selectList[i] + "\" style=\"height:18px;line-height:20px;cursor:default;overflow:hidden;\" title=\"" + newStr + "\">" + newStr + "</li>");
+				}
+			}
+		}else{
+			for (var i=1; i<selectList.length; i++){
+				var newStr = selectList[i];
+				selectMenu.push("<li id=\"" + id + "_tip_" + selectList[i] + "\" style=\"height:18px;line-height:20px;cursor:default;overflow:hidden;\" title=\"" + newStr + "\">" + newStr + "</li>");
+			}
+		}
+
+		obj.selectTip.html(selectMenu.join(""));
+		obj.optionList = [];
+		$("#" + id + "_tip li").each(function(i, el){
+			if (i === 0) {
+				return;
+			}
+			var elem = $(el);
+			elem.bind("mouseover",function(){
+				obj.activatedOption = [elem, i-1];
+				for (var j=0; j<obj.optionList.length; j++){
+					obj.optionList[j].css("backgroundColor","#FFF");
+				}
+				obj.activatedOption[0].css("backgroundColor","#E8F4FC");
+			});
+			elem.bind("mouseout",function(){
+				elem.css("backgroundColor","#FFF");
+			});
+			elem.bind("mousedown",function(){
+				obj.inputEl.val(elem.attr("title"));
+				obj.hide();
+				if (obj.focusElId) $("#" + obj.focusElId).focus();
+			});
+			obj.optionList.push(elem);
+		});
+		obj.activatedOption = [obj.optionList[0], 0];
+		obj.activatedOption[0] && obj.activatedOption[0].css("backgroundColor", "#E8F4FC");
+		obj.selectTip.show();
+		if(obj.iframe){
+			obj.iframe.css({
+				"left": obj.selectTip.css("left"),
+				"top": obj.selectTip.css("top"),
+				"width": obj.selectTip.width(),
+				"height": obj.selectTip.height()
+			});
+			obj.iframe.show();
+		}
+	},
+	hide: function(){
+		this.selectTip.hide();
+		this.iframe && this.iframe.hide();
+	},
+	resetPos: function(){
+		this.selectTip.css({
+			"left": this.inputEl.offset().left,
+			"top": this.inputEl.offset().top + this.inputEl.outerHeight(),
+			"width": this.inputEl.outerWidth()
+		});
+		if(this.iframe){
+			this.iframe.css({
+				"left": this.selectTip.css("left"),
+				"top": this.selectTip.css("top"),
+				"width": this.selectTip.width(),
+				"height": this.selectTip.height()
+			});
+		}
+	}
+};
+
+
+
+/*
+对象:SC.hover
+功能:对指定元素增加mouseover显示效果
+*/
+SC.hover = function(selecter, classname){
+	$(selecter).each(function(i,ele){
+		var el = $(ele);
+		el.mouseover(function(){
+			el.addClass(classname);
+		});
+		el.mouseout(function(){
+			el.removeClass(classname);
+		});
+	});
+};
+
+//checkbox组多级联动监听对象
+SC.checkboxObserve = function(id,parent,child,updateFn){
+	var obj = this;
+	this.el = $("#" + id);
+	this.parent = parent || null;
+	this.child = child || null;
+	this.bChecked = this.el.attr("checked");
+	this.el.click(function(){
+		obj.check();
+	});
+	this.updateFn = updateFn || null;
+	if (this.parent){
+		this.parent.child.push(this);
+	}
+};
+SC.checkboxObserve.prototype = {
+	//参数from:更新命令的来源
+	update: function(from){
+		if (from === "parent" && this.parent){
+			if (this.parent.bChecked){
+				this.el.attr("checked", true);
+				this.bChecked = true;
+				if (this.updateFn){
+					this.updateFn(true);
+				}
+			} else {
+				this.el.attr("checked", false);
+				this.bChecked = false;
+				if (this.updateFn){
+					this.updateFn(false);
+				}
+			}
+			this.notify("child");//通知其子级选项自己已更改状态
+		}else if(from === "child" && this.child){
+			for (var i=0; i<this.child.length; i++){
+				if (this.child[i].bChecked){
+					this.el.attr("checked", true);
+					this.bChecked = true;
+					if (this.updateFn){
+						this.updateFn(true);
+					}
+					this.notify("parent");//通知其父级选项自己已更改状态
+					return;
+				}
+			}
+			//若执行到此步，则所有子选项均处于未选中状态
+			this.el.attr("checked", false);
+			this.bChecked = false;
+			if (this.updateFn){
+				this.updateFn(false);
+			}
+			this.notify("parent");//通知其父级选项自己已更改状态
+		}
+	},
+	//参数observer:通知的接收对象
+	notify: function(observer){
+		if (observer !== "child" && this.parent){
+			this.parent.update("child");//通知其父模块更新，参数代表命令来自子模块
+		}
+		if (observer !== "parent" && this.child){
+			for (var i=0; i<this.child.length; i++){
+				this.child[i].update("parent");//通知其子模块更新，参数代表命令来自父模块
+			}
+		}
+	},
+	check: function(){
+		this.bChecked = this.el.attr("checked");
+		if (this.updateFn){
+			this.updateFn(this.bChecked);
+		}
+		this.notify();
+	}
+};
+
+//遮罩层显示类
+SC.mask = function(id,options){
+	arguments.callee.list = arguments.callee.list || {};
+	var list = arguments.callee.list;
+	if (!list[id]){
+		list[id] = new SC.mask.obj(id,options);
+	} else if (options){
+		if (typeof options.opacity != "undefined"){
+			list[id].setOpacity(options.opacity);
+		}
+		if (typeof options.zIndex != "undefined"){
+			list[id].setZIndex(options.zIndex);
+		}
+	}
+	return list[id];
+};
+SC.mask.obj = function(id,options){
+	options = options || {};
+	var obj = this;
+	this.id = id;
+	this.opacity = typeof options.opacity != "undefined" ? options.opacity : 0.6;
+	this.zIndex = typeof options.zIndex != "undefined" ? options.zIndex : 99;
+	if ($.browser.msie && $.browser.version == 6.0){
+		$("<iframe frameborder=0 style=\"display:none;position:absolute;left:0px;top:0px;width:100%;background-color:#000000;\" id=\"sc_mask_" + this.id + "\"></iframe>").appendTo("body");
+	}else{
+		$("<div style=\"display:none;position:absolute;left:0px;top:0px;width:100%;background-color:#000000;\" id=\"sc_mask_" + this.id + "\"></div>").appendTo("body");
+	}
+	this.el = $("#sc_mask_" + this.id);
+	this.el.css({
+		"opacity": this.opacity,
+		"z-index": this.zIndex
+	});
+	$(window).resize(function(){
+		obj.resize();
+	});
+};
+SC.mask.obj.prototype = {
+	show: function(){
+		this.resize();
+		this.el.show();
+	},
+	hide: function(){
+		this.el.hide();
+	},
+	resize: function(){
+		this.el.css({
+			"width": SC.document.width(),
+			"height": SC.document.height()
+		});
+	},
+	setOpacity: function(opacity){
+		if(typeof opacity != "undefined"){
+			this.el.css("opacity", opacity);
+		}
+	},
+	setZIndex: function(zIndex){
+		if(typeof zIndex != "undefined"){
+			this.el.css("z-index", zIndex);
+		}
+	}
+};
+
+//通过房间获取场次列表的对象
+SC.room.getNoList = function(options){
+	this.no = null;
+	this.el = $("#" + (options["elId"]||"room_id"));
+	this.url = options["url"] || "/live5/index.php/interface/get_rnos/";
+	this.tip = options["tip"];
+	var obj = this;
+	this.el.bind("change",function(){
+		obj.getData();
+		obj.tip.inputEl.val("");
+	});
+	this.getData();
+};
+SC.room.getNoList.prototype.getData = function(){
+	this.no = this.el.val();
+	var obj = this;
+	$.ajax({
+		type: "GET",
+		url: this.url + this.no,
+		dataType: "json",
+		success: function(result) {
+			var dataList = [];
+			for (var i = 0; i < result.length; i++){
+				dataList.push(result[i]["r_no"] + "-" + result[i]["r_topic"]);
+			}
+			obj.tip.select = dataList;
+		},
+		error: function(){
+			obj.tip.select = [];
+		}
+	});
+};
+
+//弹出窗组件
+//对象名：SC.win；
+//功能：创建一个浮动窗体；
+//参数： 
+//id(必需)：窗体标识；
+//options(必需)：参数组，包含"content"，"width"。
+//content(必需)：窗体内容，可以是jQuery的选择器，也可以是html代码；
+//width：窗体宽度，暂未支持，不设置则为默认(约570px)。
+//
+SC.win = function(id, options){
+	arguments.callee.list = arguments.callee.list || {};
+	var list = arguments.callee.list;
+	if (!list[id]){
+		list[id] = new SC.win.obj(id, options);
+	} else if (options) {
+		if (options["width"]){
+			list[id].setWidth(options["width"]);
+		}
+		if (options["title"]){
+			list[id].setTitle(options["title"]);
+		}
+		if (options["content"]){
+			list[id].setContent(options["content"]);
+		}
+		if (options["left"]){
+			list[id].setLeft(options["left"]);
+		}
+	}
+	return list[id];
+};
+SC.win.obj = function(id, options){
+	options = options || {};
+	var aHtml = [],
+		obj = this;
+
+	this.id = id;
+	this.content = $(options["content"] || "<div></div>");
+	this.containment = options["containment"] || "body";
+	this.title = options["title"] || "";
+	this.zIndex = options["zIndex"] || 100;
+	this.width = parseInt(options["width"]) || 577;
+	this.onHide = options["onHide"] || null;
+	this.onShow = options["onShow"] || null;
+	this.left = options["left"] || 0;
+	
+	aHtml.push("<div class=\"t_window win02\" id=\"scwin_");
+	aHtml.push(this.id);
+	aHtml.push("\" style=\"position:absolute;z-index:");
+	aHtml.push(this.zIndex);
+	aHtml.push(";display:none;\"><div class=\"head head02\"><h2 class=\"t03\" id=\"scwin_title_");
+	aHtml.push(this.id);
+	aHtml.push("\">");
+	aHtml.push(this.title);
+	aHtml.push("</h2> <span class=\"more\"><a id=\"scwin_close_");
+	aHtml.push(this.id);
+	aHtml.push("\" href=\"javascript:void(0);\"><img src=\"/views/ucenter_new/images/hxacc_1102_close02.png\" width=\"30\" height=\"30\" alt=\"关闭\" title=\"关闭\" /></a></span></div><div class=\"t_c\" id=\"scwin_container_");
+	aHtml.push(this.id);
+	aHtml.push("\"><div class=\"dialog_body\" id=\"scwin_body_");
+	aHtml.push(this.id);
+	aHtml.push("\" ></div>");
+	if ($.browser.msie && $.browser.version == "6.0"){
+		aHtml.push("<iframe id=\"scwin_iframe_");
+		aHtml.push(this.id);
+		aHtml.push("\" style=\"position:absolute;left:0px;top:10px;z-index:-1;\" ></iframe>");
+	}
+	aHtml.push("</div>");
+	$("body").append(aHtml.join(""));
+
+	this.body = {
+		el: $("#scwin_" + this.id),
+		table: $("#scwin_table_" + this.id),
+		head: $("#scwin_head_" + this.id),
+		title: $("#scwin_title_" + this.id),
+		close: $("#scwin_close_" + this.id),
+		container: $("#scwin_container_" + this.id),
+		content: $("#scwin_body_" + this.id),
+		iframe: $("#scwin_iframe_" + this.id)
+		
+	};
+	this.body.el.draggable({
+		"handle": "#scwin_head_" + this.id,
+		"containment": this.containment
+	});
+	//this.setWidth(this.width);
+	this.center();
+	this.body.content.append(this.content);
+	this.body.content.css("display","");
+	this.content.css("display","");
+	this.body.close.click(function(){
+		obj.hide();
+	});
+	
+	this.mask = SC.mask("sc_win_" + this.id, {"zIndex": this.zIndex-1});
+};
+SC.win.obj.prototype = {
+	show: function(callback){
+		if (callback){
+			callback();
+		} else if (this.onShow){
+			this.onShow();
+		}
+		this.center();
+		this.body.el.show();
+		this.mask.show();
+	},
+	hide: function(callback){
+		this.body.el.hide();
+		if (callback){
+			callback();
+		} else if (this.onHide){
+			this.onHide();
+		}
+		this.mask.hide();
+	},
+	center: function(){
+		var wWidth = $(window).width() ,
+			scrolltop = $(window).scrollTop(),
+			wHeight = $(window).height(),
+			sWidth =this.body.el.width(),
+			sHeight =this.body.el.height(),
+			top = scrolltop+wHeight/2-sHeight/2;
+		
+		
+		if(this.left == 0){
+			this.body.el.css("left",wWidth/2-sWidth/2);
+		}else{
+			this.body.el.css("left",wWidth/2-sWidth/2 + this.left/2);
+//			alert(wWidth/2-sWidth/2 + this.left);
+		}
+		this.body.el.css("top", (top>0?top:0));
+		this.body.iframe.css({
+			"width": sWidth,
+			"height": sHeight-20
+		});
+	},
+	setWidth: function(width){
+		width = parseInt(width);
+		if (!width){
+			return this.width;
+		}
+		this.width = width;
+		this.body.el.css("width", width);
+		this.body.table.css("width", width);
+		this.body.head.css("width", width-37);
+		this.body.container.css("width", width-22);
+		this.body.content.css("width", width-42);
+	},
+	setTitle: function(title){
+		this.title = title;
+		this.body.title.html(title);
+	},
+	setContent: function(content){
+		if (content){
+			this.body.content.html("");
+			this.body.content.append($(content));
+		}
+	},
+	setLeft: function(left){
+		this.left = left;
+	},
+	destroy: function(){
+	}
+
+};
+
+
+SC.viewText = {
+	win: null,
+	id: "wg_scwin_viewtext",
+	text: "",
+	initialized: false,
+	init: function(){
+		SC.viewText.win = SC.win("viewtext",{
+			"content": "<div id=\"" + SC.viewText.id + "\"></div>"
+		});
+	},
+	view: function(text,id){
+		SC.viewText.id = id || SC.viewText.id;
+		SC.viewText.text = text || "";
+		if (!SC.viewText.initialized){
+			SC.viewText.init();
+		}
+		$("#" + SC.viewText.id).html(text);
+		//SC.win("viewtext").center();
+		SC.viewText.win.show();
+	}
+};
+
+SC.dialog = {
+	show: function(id){
+		var windowwidth = $(window).width(),
+			scrolltop = $(window).scrollTop(),
+			height = $(window).height(),
+			show_width = $("#" + id).width(),
+			show_height = $("#" + id).height(),
+			top = scrolltop+height/2-show_height/2;
+		
+		$("#" + id).css("left",windowwidth/2-show_width/2);
+		$("#" + id).css("top", (top>0?top:0));
+		$("#" + id).show();
+	}
+};
+
+//预览道具功能
+SC.popView = {
+	win: null,
+	id: "wg_scwin_popview",
+	text: "",
+	initialized: false,
+	init: function(){
+		SC.popView.win = SC.win("popview",{
+			"content": "<div id=\"" + SC.popView.id + "_con\"></div>"
+		});
+		SC.popView.initialized = true;
+	},
+	show: function(type,url){
+		var content;
+		if (!SC.popView.initialized){
+			SC.popView.init();
+		}
+		if (type == "img"){
+			$("#" + SC.popView.id + "_con").html("<img src=\"" + url + "\" style=\"margin:0px auto;\" />");
+			SC.win("popview").setWidth(600);
+		} else if (type == "flash"){
+			var flash = new sinaFlash(url, SC.popView.id + "_flash", "100%", "400", "9", "#000000");
+			flash.write(SC.popView.id + "_con");
+			SC.win("popview").setWidth(560);
+		}
+		//SC.win("popview").center();
+		SC.popView.win.show();
+	}
+};
+
+
+//将对象JSON转化为字符串
+SC.json = {
+	encode: function(obj){
+		switch(Object.prototype.toString.call(obj)){
+			case "[object String]": 
+				return "\"" + encodeURIComponent(obj) + "\"";
+			case "[object Number]": case "[object Boolean]":
+				return obj.toString();
+			case "[object Array]":
+				var arr = [];
+				for (var n in obj){
+					arr.push(SC.json.encode(obj[n]));
+				}
+				return "[" + arr + "]";
+			case "[object Object]":
+				var arr = [];
+				for (var n in obj){
+					arr.push(SC.json.encode(n) + ":" + SC.json.encode(obj[n]));
+				}
+				return "{" + arr + "}";
+		}
+		return null;
+	}
+};
+
+//对页面document对象的一些操作
+SC.document = {
+	//获取document对象高度
+	height: function() {
+		//兼容IE6和IE
+		if ($.browser.msie && $.browser.version != 7) {
+			var scrollHeight = Math.max(
+				document.documentElement.scrollHeight,
+				document.body.scrollHeight
+			);
+			var offsetHeight = Math.max(
+				document.documentElement.offsetHeight,
+				document.body.offsetHeight
+			);
+
+			if (scrollHeight < offsetHeight) {
+				return $(window).height() + 'px';
+			} else {
+				return scrollHeight + 'px';
+			}
+		} else {
+			return $(document).height() + 'px';
+		}
+	},
+
+	width: function() {
+	//获取document对象宽度
+		if ($.browser.msie && $.browser.version != 7) {
+			var scrollWidth = Math.max(
+				document.documentElement.scrollWidth,
+				document.body.scrollWidth
+			);
+			var offsetWidth = Math.max(
+				document.documentElement.offsetWidth,
+				document.body.offsetWidth
+			);
+
+			if (scrollWidth < offsetWidth) {
+				return $(window).width() + 'px';
+			} else {
+				return scrollWidth + 'px';
+			}
+		} else {
+			return $(document).width() + 'px';
+		}
+	}
+};
+
+SC.date = {
+	getDateStr: function(AddDayCount){
+		var dd = new Date();
+		dd.setDate(dd.getDate()+AddDayCount);// 获取AddDayCount天后的日期
+		var y = dd.getFullYear();
+		var m = dd.getMonth()+1;//获取当前月份的日期
+		m = '' + m;
+		if(m.length == 1){
+			m = '0'+m;
+		}
+		var d = dd.getDate();
+		d = '' + d;
+		if(d.length == 1){
+			d = '0'+d;
+		}
+		return y+"-"+m+"-"+d;
+	}
+};
+
+function count (mixed_var, mode) {
+    // Count the number of elements in a variable (usually an array)  
+    //
+    // version: 1109.2015
+    // discuss at: http://phpjs.org/functions/count    // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
+    // +      input by: Waldo Malqui Silva
+    // +   bugfixed by: Soren Hansen
+    // +      input by: merabi
+    // +   improved by: Brett Zamir (http://brett-zamir.me)    // +   bugfixed by: Olivier Louvignes (http://mg-crea.com/)
+    // *     example 1: count([[0,0],[0,-4]], 'COUNT_RECURSIVE');
+    // *     returns 1: 6
+    // *     example 2: count({'one' : [1,2,3,4,5]}, 'COUNT_RECURSIVE');
+    // *     returns 2: 6    
+   
+    var key, cnt = 0;
+ 
+    if (mixed_var === null || typeof mixed_var === 'undefined') {
+        return 0;
+    } else if (mixed_var.constructor !== Array && mixed_var.constructor !== Object) {        
+        return 1;
+    }
+ 
+    if (mode === 'COUNT_RECURSIVE') {
+        mode = 1;    }
+    if (mode != 1) {
+        mode = 0;
+    }
+     for (key in mixed_var) {
+        if (mixed_var.hasOwnProperty(key)) {
+            cnt++;
+            if (mode == 1 && mixed_var[key] && (mixed_var[key].constructor === Array || mixed_var[key].constructor === Object)) {
+                cnt += this.count(mixed_var[key], 1);            }
+        }
+    }
+ 
+    return cnt;
+}
+
+jQuery.extend({
+	  MultiSelect: function(params) {
+	    var url=params.url;
+	    var allownull=false;
+	    if (params.AllowNull==true) allownull=true;
+	    
+	    var lvcnt=params.lvcnt;
+	    var lv1k=params.lv1k;
+	    var lv1v=params.lv1v;
+	    var lv2k=params.lv2k;
+	    var lv2v=params.lv2v;
+	    if (lvcnt==3) {
+	      var lv3k=params.lv3k;
+	      var lv3v=params.lv3v;
+	    }
+
+	    var lv1sel=$("#"+params.lv1sel);
+	    var lv2sel=$("#"+params.lv2sel);
+	    if (lvcnt==3) {
+	      var lv3sel=$("#"+params.lv3sel);
+	    }
+
+	    var lv1={};
+	    var lv2={};
+	    var lv3={};
+	    
+	    var lv1selected;
+	    var lv2selected;
+	    var lv3selected;
+
+	    var lv1changed=params.Onlv1Changed;
+	    var lv2changed=params.Onlv2Changed;
+	    var lv3changed=params.Onlv3Changed;
+	    
+	    if (params.SelectedLevel==undefined || params.SelectedValue==undefined) {
+	      lv1selected=lv2selected=lv3selected='';
+	    } else {
+	      if (params.SelectedLevel==1) {
+	        lv1selected=params.SelectedValue;
+	      } 
+	      if (params.SelectedLevel==2) {
+	        lv2selected=params.SelectedValue;
+	      } 
+	      if (params.SelectedLevel==3 && params.lvcnt!=3) {
+	        lv1selected=lv2selected=lv3selected='';
+	      } 
+	      if (params.SelectedLevel==3 && params.lvcnt==3) {
+	        lv3selected=params.SelectedValue;
+	      }
+	    }
+
+	    $.getJSON(url, function(json){
+	      $.each(json.rows, function(n,v){
+	        var lv1kk=v[lv1k];
+	        var lv1vv=v[lv1v];
+	        var lv2kk=v[lv2k];
+	        var lv2vv=v[lv2v];
+	        if (lvcnt==3) {
+	          var lv3kk=v[lv3k];
+	          var lv3vv=v[lv3v];
+	        }
+	        
+	        if (lv1selected==undefined) {
+	          if (lvcnt==3 && lv3selected!=undefined && lv3kk==lv3selected){
+	            lv1selected=lv1kk;
+	            lv2selected=lv2kk;
+	          }
+	          if (lv2selected!=undefined && lv2kk==lv2selected) 
+	            lv1selected=lv1kk;
+	        }
+	        if (lv1[lv1kk]==undefined)
+	          lv1[lv1kk]=lv1vv;
+
+	        if (lv2[lv1kk]==undefined)
+	          lv2[lv1kk]={};
+	        var lv2arr=lv2[lv1kk];
+	        if (lv2arr[lv2kk]==undefined)        
+	          lv2arr[lv2kk]=lv2vv;
+
+	        if (lvcnt==3) {
+	          if (lv3[lv2kk]==undefined)
+	            lv3[lv2kk]={};
+	          var lv3arr=lv3[lv2kk];
+	          if (lv3arr[lv3kk]==undefined)
+	            lv3arr[lv3kk]=lv3vv;
+	        }
+	      });
+
+	      var sel1opts=[];
+	      //if (allownull) sel1opts.push("<option value=\"\"></option>");
+	      $.each(lv1,function(k,v) {
+	        if (lv1selected!='' && lv1selected==k) {
+	          sel1opts.push("<option value=\""+k+"\" selected>"+v+"</option>");
+	          lv1selected='';
+	        }
+	        else
+	          sel1opts.push("<option value=\""+k+"\">"+v+"</option>");
+	      });
+	      lv1sel.empty().append(sel1opts.join(""));
+	      lv1sel.change();
+	    });
+
+	    lv1sel.change(function(){
+	      lv2sel.empty();
+	      var sel2opts=[];
+	      if (allownull) sel2opts.push("<option value=\"\">请选择</option>");
+	      var lv2arr=lv2[$(this).val()];
+	      if (typeof lv2arr=='object') {
+	        $.each(lv2arr,function(k,v) {
+	          if (lv2selected!='' && lv2selected==k) {
+	            sel2opts.push("<option value=\""+k+"\" selected>"+v+"</option>");
+	            lv2selected='';
+	          }
+	          else
+	            sel2opts.push("<option value=\""+k+"\">"+v+"</option>");
+	        });
+	      }
+	      lv2sel.append(sel2opts.join(""));
+	      if (lv1changed!=undefined) lv1changed(lv2arr);
+	      if (lvcnt==3) lv2sel.change();
+	    });
+
+	    if (lvcnt==3) {
+	      lv2sel.change(function(){
+	        lv3sel.empty();
+	        var sel3opts=[];
+	        var lv3arr=lv3[$(this).val()];
+	        var cnt = count(lv3arr);
+	        if (allownull && cnt > 1) sel3opts.push("<option value=\"\">请选择</option>");
+	        if (typeof lv3arr=='object') {
+	          $.each(lv3arr,function(k,v) {
+	            if (lv3selected!='' && lv3selected==k) {
+	              sel3opts.push("<option value=\""+k+"\" selected>"+v+"</option>");
+	              lv3selected='';
+	            } else
+	              sel3opts.push("<option value=\""+k+"\">"+v+"</option>");
+	          });
+	        }
+	        if (cnt == 1)
+	        	lv3sel.hide();
+	        else
+	        	lv3sel.show();
+	        	
+	        lv3sel.append(sel3opts.join(""));
+	        if (lv2changed!=undefined) 
+	          if ( typeof lv3arr=='object' )
+	            lv2changed(lv3arr);
+	          else 
+	            lv2changed([]);
+	      });
+	      
+	      lv3sel.change(function(){
+	        if (lv3changed!=undefined) lv3changed($(this).val());
+	      });
+	    }
+	  }
+	});
+
+
+
